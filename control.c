@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
 		printf("Need one argument\n");
 	}
 	else{
-		if (strcmp(agrv[1], "-c") == 0){
+		if (strcmp(argv[1], "-c") == 0){
 			sd = semget(KEY, 1, IPC_CREAT | IPC_EXCL | 0644);
 			if (sd == -1){
 				printf("semaphore already exists\n");
@@ -34,15 +34,15 @@ int main(int argc, char *argv[]){
 		}
 	}
 
-	else if (strcmp(agrv[1], "-v") == 0){
+	else if (strcmp(argv[1], "-v") == 0){
 		sd = semget(KEY, 1, 0644);
 		value = semctl(sem, 0, GETVAL);
 		printf("semaphore value: %d\n", value);
 	}
 
-	else if (strcmp(agrv[1], "-r") == 0){
+	else if (strcmp(argv[1], "-r") == 0){
 		sd = semget(KEY, 1, 0644);
-		semctl(sem, 0, IPC_RMID);
+		semctl(sd, 0, IPC_RMID);
 		printf("semaphore released: %d\n", value);
 	}
 
