@@ -28,6 +28,8 @@ int main(int argc, char *argv[]){
 			else{
 				value = atoi(agrv[2]);
 				semctl(sd, 0, SETVAL, value);
+				printf("semaphore created %d\n", sd);
+				printf("semaphore value: %d\n", value);
 			}
 		}
 	}
@@ -35,11 +37,13 @@ int main(int argc, char *argv[]){
 	else if (strcmp(agrv[1], "-v") == 0){
 		sd = semget(KEY, 1, 0644);
 		value = semctl(sem, 0, GETVAL);
+		printf("semaphore value: %d\n", value);
 	}
 
 	else if (strcmp(agrv[1], "-v") == 0){
 		sd = semget(KEY, 1, 0644);
 		semctl(sem, 0, IPC_RMID);
+		printf("semaphore released: %d\n", value);
 	}
 
 	else{
