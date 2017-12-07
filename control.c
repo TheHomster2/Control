@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 		printf("semaphore value: %d\n", value);
 	}
 
-	else if (strcmp(agrv[1], "-v") == 0){
+	else if (strcmp(agrv[1], "-r") == 0){
 		sd = semget(KEY, 1, 0644);
 		semctl(sem, 0, IPC_RMID);
 		printf("semaphore released: %d\n", value);
